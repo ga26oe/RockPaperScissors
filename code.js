@@ -1,5 +1,6 @@
 function getComputerChoice() {
     let randomInt = Math.random();
+    console.log(randomInt);
     let choice = String;
     if (randomInt >=0 && randomInt < .33) {
         choice = "rock";
@@ -18,9 +19,13 @@ function getComputerChoice() {
 let computerChoice = getComputerChoice();
 
 function getHumanChoice() {
-    let humanChoice = prompt();
-    console.log(humanChoice);
-    
+    userChoice = prompt();
+    return userChoice;
+
 }
 
+let humanChoice = getHumanChoice();
+
+console.log(computerChoice);
+console.log(humanChoice);
 
