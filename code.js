@@ -3,79 +3,93 @@ let computerScore = 0;
 
 function getComputerChoice() {
     let randomInt = Math.random();
-    console.log(randomInt);
     let choice = String;
     if (randomInt >= 0 && randomInt < .33) {
-        choice = "rock";
+        return "rock";
     }
     else if (randomInt >= .33 && randomInt < .67) {
-        choice = "paper";
+        return "paper";
     }
     else {
-        choice = "scissors";
+        return "scissors";
     }
-
-    return choice;
 
 }
 
-
 function getHumanChoice() {
-    userChoice = prompt();
-    return userChoice;
+    return prompt("Enter your choice (rock/paper/scissors):").toLowerCase();
 
 }
 
 function playRound(humanChoice, computerChoice) {
-    
-    humanChoice = getHumanChoice();
-    computerChoice = getComputerChoice();
 
-    let lowercaseChoice = humanChoice.toLowerCase();
-    if (lowercaseChoice == "rock" && computerChoice == "paper") {
+
+    if (humanChoice == "rock" && computerChoice == "paper") {
         console.log("you lose");
         computerScore++;
+        result = "computer";
     }
-    else if (lowercaseChoice == "scissors" && computerChoice == "paper") {
+    else if (humanChoice == "scissors" && computerChoice == "paper") {
         console.log("you win");
         humanScore++;
+        result = "human";
     }
-    else if (lowercaseChoice == "paper" && computerChoice == "paper") {
+    else if (humanChoice == "paper" && computerChoice == "paper") {
         console.log("tie");
     }
 
-
-    else if (lowercaseChoice == "rock" && computerChoice == "rock") {
+    else if (humanChoice == "rock" && computerChoice == "rock") {
         console.log("tie");
 
     }
 
-    else if (lowercaseChoice == "scissors" && computerChoice == "rock") {
+    else if (humanChoice == "scissors" && computerChoice == "rock") {
         console.log("you lose");
         computerScore++;
+        result = "computer";
+
     }
 
-    else if (lowercaseChoice == "paper" && computerChoice == "rock") {
+    else if (humanChoice == "paper" && computerChoice == "rock") {
         console.log("you win");
         humanScore++;
+        result = "human";
+
     }
 
-    else if (lowercaseChoice == "scissors" && computerChoice == "scissors") {
+    else if (humanChoice == "scissors" && computerChoice == "scissors") {
         console.log("tie");
     }
 
-    else if (lowercaseChoice == "rock" && computerChoice == "scissors") {
+    else if (humanChoice == "rock" && computerChoice == "scissors") {
         console.log("you win");
         humanScore++;
+        result = "human";
+
     }
 
-    else if (lowercaseChoice == "paper" && computerChoice == "scissors") {
+    else if (humanChoice == "paper" && computerChoice == "scissors") {
         console.log("you lose");
         computerScore++;
-    }
+        result = "computer";
 
-    return { computerScore, humanScore };
+    }
 
 }
 
-playRound();
+function playGame() {
+    for (let i=0; i<=5; i++) {
+        let humanChoice = getHumanChoice();
+        let computerChoice = getComputerChoice();
+        let result = playRound(humanChoice, computerChoice);
+
+        if (result === "human") {
+            humanScore++;
+        } else if (result === "computer") {
+            computerScore++;
+        }
+
+    }
+}
+
+playGame();
